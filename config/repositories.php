@@ -40,7 +40,7 @@ return [
     | The path to the criteria folder.
     |
     */
-    'criteria_path'=> 'app' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Criteria',
+    'criteria_path' => 'app' . DIRECTORY_SEPARATOR . 'Repositories' . DIRECTORY_SEPARATOR . 'Criteria',
 
     /*
     |--------------------------------------------------------------------------
@@ -50,5 +50,104 @@ return [
     | The model namespace.
     |
     */
-    'model_namespace' => 'App'
+    'model_namespace' => 'App',
+
+    /*
+   |--------------------------------------------------------------------------
+   | Cache Config
+   |--------------------------------------------------------------------------
+   |
+   */
+    'cache' => [
+        /*
+         |--------------------------------------------------------------------------
+         | Cache Status
+         |--------------------------------------------------------------------------
+         |
+         | Enable or disable cache
+         |
+         */
+        'enabled' => true,
+        /*
+         |--------------------------------------------------------------------------
+         | Cache Minutes
+         |--------------------------------------------------------------------------
+         |
+         | Time of expiration cache
+         |
+         */
+        'minutes' => 30,
+        /*
+         |--------------------------------------------------------------------------
+         | Cache Repository
+         |--------------------------------------------------------------------------
+         |
+         | Instance of Illuminate\Contracts\Cache\Repository
+         |
+         */
+        'repository' => 'cache',
+        /*
+          |--------------------------------------------------------------------------
+          | Cache Clean Listener
+          |--------------------------------------------------------------------------
+          |
+          |
+          |
+          */
+        'clean' => [
+            /*
+              |--------------------------------------------------------------------------
+              | Enable clear cache on repository changes
+              |--------------------------------------------------------------------------
+              |
+              */
+            'enabled' => true,
+            /*
+              |--------------------------------------------------------------------------
+              | Actions in Repository
+              |--------------------------------------------------------------------------
+              |
+              | create : Clear Cache on create Entry in repository
+              | update : Clear Cache on update Entry in repository
+              | delete : Clear Cache on delete Entry in repository
+              |
+              */
+            'on' => [
+                'create' => true,
+                'update' => true,
+                'delete' => true,
+            ],
+        ],
+        'params' => [
+            /*
+            |--------------------------------------------------------------------------
+            | Skip Cache Params
+            |--------------------------------------------------------------------------
+            |
+            |
+            | Ex: http://prettus.local/?search=lorem&skipCache=true
+            |
+            */
+            'skipCache' => 'skipCache',
+        ],
+        /*
+       |--------------------------------------------------------------------------
+       | Methods Allowed
+       |--------------------------------------------------------------------------
+       |
+       | methods cacheable : all, paginate, find, findByField, findWhere, getByCriteria
+       |
+       | Ex:
+       |
+       | 'only'  =>['all','paginate'],
+       |
+       | or
+       |
+       | 'except'  =>['find'],
+       */
+        'allowed' => [
+            'only' => null,
+            'except' => null,
+        ],
+    ],
 ];
